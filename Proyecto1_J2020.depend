@@ -1,0 +1,68 @@
+# depslib dependency file v1.0
+1592025542 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\main.cpp
+	<iostream>
+	"menu.h"
+	"matrizD.h"
+
+1591726177 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\prueba.h
+
+1591770406 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\prueba.cpp
+	"prueba.h"
+
+1591759602 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\menu.cpp
+	"menu.h"
+	<iostream>
+
+1591754028 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\menu.h
+	<iostream>
+
+1591860649 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\arbolabb.h
+	"nodoABB.h"
+
+1591862625 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\arbolabb.cpp
+	"arbolABB.h"
+	<iostream>
+	"nodoABB.h"
+
+1591929868 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\nodoabb.h
+
+1591929817 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodoabb.cpp
+	"nodoABB.h"
+
+1591929895 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\arbol.h
+	"nodoABB.h"
+
+1591863264 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\nodo.h
+
+1591863288 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodo.cpp
+	"nodo.h"
+
+1591929842 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\arbol.cpp
+	"arbol.h"
+	<iostream>
+	"nodoABB.h"
+
+1592014793 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodom.cpp
+	"nodoM.h"
+	<iostream>
+
+1592014721 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\nodom.h
+	<iostream>
+
+1592002469 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodoheader.cpp
+	"nodoHeader.h"
+	<iostream>
+
+1592002580 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\nodoheader.h
+	"nodoM.h"
+	<iostream>
+
+1592023922 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\matrizd.h
+	"nodoM.h"
+	<iostream>
+
+1592025444 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\matrizd.cpp
+	"matrizD.h"
+	"nodoM.h"
+	<iostream>
+
