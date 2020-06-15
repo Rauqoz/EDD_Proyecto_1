@@ -18,6 +18,7 @@ public:
     void crearUsuario(string nombre_,string user_,string pass_,string depa_,string empre_);
     nodoM* buscarDepartamento(string depa_);
     nodoM* buscarEmpresa(string empre_);
+    nodoM* buscarUsuario(string user_,string pass_,string depa_,string empre_);
     void mostrarDepartamentos();
     void mostrarEmpresas();
     void mostrarUsuariosDepartamento(string depa_);

@@ -38,72 +38,181 @@ nodoM* matrizD::crearEmpresa(string nombre_)
 }
 void matrizD::crearUsuario(string nombre_,string user_,string pass_,string depa_,string empre_)
 {
-    nodoM* depa = buscarDepartamento(depa_);
-    nodoM* empre = buscarEmpresa(empre_);
-
+    nodoM* depa = raiz;
+    nodoM* empre = raiz;
+    bool exDepa = false, exEmpre = false;
+    while(depa->derecha != 0)
+    {
+        depa = depa->derecha;
+        if(depa->nombre == depa_)
+        {
+            exDepa = true;
+            break;
+        }
+    }
+    while(empre->abajo!= 0)
+    {
+        empre = empre->abajo;
+        if(empre->nombre == empre_)
+        {
+            exEmpre = true;
+            break;
+        }
+    }
     nodoM* nuevo = new nodoM();
     nuevo->nombre = nombre_;
     nuevo->user = user_;
     nuevo->pass = pass_;
-    depa->abajo = nuevo;
-    empre->derecha = nuevo;
+    if(exDepa== false && exEmpre == false)
+    {
+        nodoM* tempDepa = crearDepartamento(depa_);
+        nodoM* tempEmpre = crearEmpresa(empre_);
+        nuevo->fila = tempEmpre->fila;
+        nuevo->columna = tempDepa->columna;
+        tempDepa->abajo = nuevo;
+        nuevo->arriba = tempDepa;
+        tempEmpre->derecha = nuevo;
+        nuevo->izquierda = tempEmpre;
+    }
+    else if (exDepa == true && exEmpre == false)
+    {
+        nodoM* tempEmpre = crearEmpresa(empre_);
+        nuevo->fila = tempEmpre->fila;
+        nuevo->columna = depa->columna;
+        while(depa->abajo != 0)
+        {
+            depa = depa->abajo;
+        }
+        tempEmpre->derecha = nuevo;
+        nuevo->izquierda = tempEmpre;
+        depa->abajo = nuevo;
+        nuevo->arriba = depa;
+
+    }
+    else if(exDepa == false && exEmpre == true)
+    {
+        nodoM* tempDepa = crearDepartamento(depa_);
+        nuevo->fila = empre->fila;
+        nuevo->columna = tempDepa->columna;
+        while(empre->derecha!= 0)
+        {
+            empre = empre->derecha;
+        }
+        empre->derecha = nuevo;
+        nuevo->izquierda = empre;
+        tempDepa->abajo = nuevo;
+        nuevo->arriba = tempDepa;
+
+    }
+    else if(exDepa == true && exEmpre == true)
+    {
+        int prefila = empre->fila;
+        int precolumna = depa->columna;
+        while(depa->abajo !=0)
+        {
+            depa = depa->abajo;
+            if(depa->fila == prefila && depa->columna == precolumna)
+            {
+                cout << "encontro el nodo en comun \n";
+                break;
+            }
+        }
+        if(depa->user == user_)
+        {
+            cout << "Usuario ya Existe" << endl;
+        }
+        else
+        {
+            bool exNodoZ = false;
+            while(depa->zmas != 0)
+            {
+                depa = depa->zmas;
+                if(depa->user == user_ || (depa->user == user_ && depa->nombre == nombre_))
+                {
+                    cout << "Ya existe en Z" << endl;
+                    exNodoZ = true;
+                    break;
+                }
+            }
+            if(exNodoZ == false)
+            {
+                nuevo->fila = prefila;
+                nuevo->columna = precolumna;
+                depa->zmas = nuevo;
+                nuevo->zmenos = depa;
+
+            }
+        }
+
+    }
+
+}
+nodoM* matrizD::buscarUsuario(string user_,string pass_,string depa_,string empre_)
+{
+    nodoM* depa = buscarDepartamento(depa_);
+    nodoM* empre = buscarEmpresa(empre_);
+    if(depa != 0 && empre != 0)
+    {
+        int prefila = empre->fila;
+        int precolumna = depa->columna;
+        while(depa->abajo !=0)
+        {
+            depa = depa->abajo;
+            if(depa->fila == prefila && depa->columna == precolumna)
+            {
+                break;
+            }
+        }
+        if(depa->user == user_ && depa->pass == pass_)
+        {
+            cout << "Login Usuario " << depa->user << endl;
+            return depa;
+        }
+        else
+        {
+            while(depa->zmas != 0)
+            {
+                depa = depa->zmas;
+                if(depa->user == user_&& depa->pass == pass_ )
+                {
+                    cout << "Login Usuario " << depa->user << endl;
+                    return depa;
+                }
+            }
+            return 0;
+        }
+    }
+    return 0;
 
 }
 nodoM* matrizD::buscarDepartamento(string depa_)
 {
     nodoM* depa = raiz;
-    bool existeDepa = false;
     while(depa->derecha != 0)
     {
         depa = depa->derecha;
         if (depa->nombre == depa_)
         {
-            existeDepa = true;
+            return depa;
             break;
         }
     }
-    if(existeDepa == false)
-    {
-        depa = crearDepartamento(depa_);
-        return depa;
-    }
-    else
-    {
-        while(depa->abajo != 0)
-        {
-            depa = depa->abajo;
-        }
-        return depa;
-    }
-
+    return 0;
 
 }
 nodoM* matrizD::buscarEmpresa(string empre_)
 {
     nodoM* empre = raiz;
-    bool existeEmpre = false;
     while(empre->abajo != 0)
     {
         empre = empre->abajo;
         if(empre->nombre == empre_)
         {
-            existeEmpre = true;
+            return empre;
             break;
         }
     }
-    if(existeEmpre == false)
-    {
-        empre = crearEmpresa(empre_);
-        return empre;
-    }
-    else
-    {
-        while(empre->derecha!= 0)
-        {
-            empre = empre->derecha;
-        }
-        return empre;
-    }
+    return 0;
 }
 void matrizD::mostrarDepartamentos()
 {
@@ -149,8 +258,16 @@ void matrizD::mostrarUsuariosDepartamento(string depa_)
         {
             depa = depa->abajo;
             cout << depa->nombre << " (" << depa->fila << "," << depa->columna << ")" << " - ";
+            nodoM* tempZ= depa;
+            while(tempZ->zmas != 0)
+            {
+                tempZ = tempZ->zmas;
+                cout << tempZ->nombre << " (" << tempZ->fila << "," << tempZ->columna << ")" << " << ";
+
+            }
         }
         cout << endl;
+
     }
 
 }
@@ -178,6 +295,13 @@ void matrizD::mostrarUsuariosEmpresa(string empre_)
         {
             empre = empre->derecha;
             cout << empre->nombre << " (" << empre->fila << "," << empre->columna << ")" << " - ";
+            nodoM* tempZ= empre;
+            while(tempZ->zmas != 0)
+            {
+                tempZ = tempZ->zmas;
+                cout << tempZ->nombre << " (" << tempZ->fila << "," << tempZ->columna << ")" << " << ";
+
+            }
         }
         cout << endl;
     }

@@ -14,6 +14,7 @@ public:
     nodoM* abajo ;
     nodoM* zmas ;
     nodoM* zmenos ;
+    nodoM* fnodoz;
     string nombre ;
     string user,pass,arbolAVL;
     nodoM();

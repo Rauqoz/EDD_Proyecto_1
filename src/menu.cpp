@@ -1,9 +1,13 @@
 #include "menu.h"
+#include "matrizD.h"
+#include "nodoM.h"
 #include <iostream>
 using namespace std;
 
 menu::menu()
 {
+    matriz.crearUsuario("Rau", "rau","0","guatemala","claro");
+    usuarioActual = 0;
 }
 //---------------------
 void menu::login()
@@ -25,6 +29,13 @@ void menu::login()
         {
             menuAdministrador();
         }
+        else
+        {
+            usuarioActual = matriz.buscarUsuario(user,pass,departamento,empresa);
+            if(usuarioActual != 0){
+                menuUser();
+            }
+        }
 
     }
     while(seguir == true);
@@ -36,7 +47,7 @@ void menu::menuUser()
     do
     {
         cout << "-------------------------------------------------------"<< endl;
-        cout << "%%%%%%%%%% Bienvenido "+ user +" %%%%%%%%%%"<< endl;
+        cout << "%%%%%%%%%% Bienvenido "+ usuarioActual->nombre +" %%%%%%%%%%"<< endl;
         cout << "%%%%%%%%%% 1. Agregar Activo %%%%%%%%%%"<< endl;
         cout << "%%%%%%%%%% 2. Eliminar Activo %%%%%%%%%%"<< endl;
         cout << "%%%%%%%%%% 3. Modificar Activo %%%%%%%%%%"<< endl;

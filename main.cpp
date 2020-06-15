@@ -5,23 +5,22 @@ using namespace std;
 
 int main()
 {
-//    menu start;
-//    start.login();
-    matrizD p;
-    cout << p.raiz->nombre <<endl;
-    p.crearDepartamento("guatemala");
-    p.crearUsuario("Rau","0","0","guatemala","tigo");
-    p.crearUsuario("Jose","0","0","mixco","movistar");
-    p.crearUsuario("Jaime","0","0","mixco","tigo");
-    p.crearUsuario("Laura","0","0","guatemala","tigo");
-    p.crearUsuario("Marisol","0","0","guatemala","claro");
-    p.mostrarDepartamentos();
-    p.mostrarEmpresas();
-    p.mostrarUsuariosDepartamento("guatemala");
-    p.mostrarUsuariosDepartamento("mixco");
-    p.mostrarUsuariosEmpresa("tigo");
-    p.mostrarUsuariosEmpresa("claro");
-    p.mostrarUsuariosEmpresa("movistar");
+//    matrizD p;
+//    cout << p.raiz->nombre <<endl;
+//    p.crearDepartamento("guatemala");
+//    p.crearUsuario("Rau", "rau","0","guatemala","claro");
+//    p.crearUsuario("Jose", "jose","0","guatemala","tigo");
+//    p.crearUsuario("Marisol", "marisol","0","mixco","movistar");
+//    p.crearUsuario("Mario", "mario","0","mixco","movistar");
+//    p.crearUsuario("Luis", "luis","0","mixco","movistar");
+//    p.mostrarUsuariosDepartamento("guatemala");
+//    p.mostrarUsuariosDepartamento("mixco");
+//    p.mostrarUsuariosEmpresa("claro");
+//    p.mostrarUsuariosEmpresa("tigo");
+//    p.mostrarUsuariosEmpresa("movistar");
+//    p.buscarUsuario("marisol","0","mixco","movistar");
+    menu start;
+    start.login();
 
     return 0;
 }

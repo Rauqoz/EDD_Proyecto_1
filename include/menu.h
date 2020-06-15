@@ -1,6 +1,8 @@
 #ifndef MENU_H
 #define MENU_H
 #include <iostream>
+#include "matrizD.h"
+#include "nodoM.h"
 using namespace std;
 
 
@@ -22,6 +24,8 @@ public:
 protected:
 
 private:
+    matrizD matriz;
+    nodoM* usuarioActual;
     string user, pass,departamento,empresa;
     char opcion;
     string nombreActivo,descripcionActivo,idActivo;
