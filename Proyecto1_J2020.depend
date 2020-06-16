@@ -1,19 +1,22 @@
 # depslib dependency file v1.0
-1592261376 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\main.cpp
+1592279629 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\main.cpp
 	<iostream>
 	"menu.h"
 	"matrizD.h"
+	"arbol.h"
 
 1591726177 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\prueba.h
 
 1591770406 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\prueba.cpp
 	"prueba.h"
 
-1591759602 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\menu.cpp
+1592279068 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\menu.cpp
 	"menu.h"
+	"matrizD.h"
+	"nodoM.h"
 	<iostream>
 
-1592261421 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\menu.h
+1592274883 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\menu.h
 	<iostream>
 	"matrizD.h"
 	"nodoM.h"
@@ -26,12 +29,13 @@
 	<iostream>
 	"nodoABB.h"
 
-1591929868 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\nodoabb.h
+1592271316 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\nodoabb.h
+	<iostream>
 
 1591929817 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodoabb.cpp
 	"nodoABB.h"
 
-1591929895 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\arbol.h
+1592278362 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\arbol.h
 	"nodoABB.h"
 
 1591863264 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\nodo.h
@@ -39,17 +43,18 @@
 1591863288 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodo.cpp
 	"nodo.h"
 
-1591929842 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\arbol.cpp
+1592279611 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\arbol.cpp
 	"arbol.h"
 	<iostream>
 	"nodoABB.h"
 
-1592253957 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodom.cpp
+1592278598 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodom.cpp
 	"nodoM.h"
 	<iostream>
 
-1592253941 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\nodom.h
+1592278536 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\nodom.h
 	<iostream>
+	"arbol.h"
 
 1592002469 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodoheader.cpp
 	"nodoHeader.h"
@@ -63,7 +68,7 @@
 	"nodoM.h"
 	<iostream>
 
-1592260224 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\matrizd.cpp
+1592264297 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\matrizd.cpp
 	"matrizD.h"
 	"nodoM.h"
 	<iostream>

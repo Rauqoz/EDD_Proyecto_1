@@ -11,4 +11,9 @@ nodoM::nodoM()
     zmas = 0;
     zmenos = 0;
     fnodoz = 0;
+    idContador = 0;
+}
+void nodoM::aumentarContador()
+{
+    idContador++;
 }

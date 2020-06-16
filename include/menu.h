@@ -26,9 +26,10 @@ protected:
 private:
     matrizD matriz;
     nodoM* usuarioActual;
-    string user, pass,departamento,empresa;
+    string nombre,user, pass,departamento,empresa;
     char opcion;
-    string nombreActivo,descripcionActivo,idActivo;
+    string nombreActivo,descripcionActivo;
+    int idActivo;
     bool seguir = true;
 
 };

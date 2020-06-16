@@ -165,7 +165,7 @@ nodoM* matrizD::buscarUsuario(string user_,string pass_,string depa_,string empr
         }
         if(depa->user == user_ && depa->pass == pass_)
         {
-            cout << "Login Usuario " << depa->user << endl;
+            cout << "\n Login Usuario " << depa->user << endl;
             return depa;
         }
         else
@@ -175,7 +175,7 @@ nodoM* matrizD::buscarUsuario(string user_,string pass_,string depa_,string empr
                 depa = depa->zmas;
                 if(depa->user == user_&& depa->pass == pass_ )
                 {
-                    cout << "Login Usuario " << depa->user << endl;
+                    cout << "\n Login Usuario " << depa->user << endl;
                     return depa;
                 }
             }

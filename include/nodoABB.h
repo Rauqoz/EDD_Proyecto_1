@@ -1,5 +1,6 @@
 #ifndef nodoABB_H
 #define nodoABB_H
+#include <iostream>
 using namespace std;
 
 
@@ -10,6 +11,7 @@ public:
     nodoABB *izquierda;
     nodoABB *derecha;
     int valor;
+    string nombre, descripcion;
 
 protected:
 

@@ -11,13 +11,14 @@ bool arbol::vacio()
 {
     return (raiz == nullptr);
 }
-void arbol::insertar(nodoABB *temporal,int valor_)
+void arbol::insertar(nodoABB *temporal,int valor_,string nombre_, string descripcion_)
 {
     nodoABB *nuevo = new nodoABB(valor_);
+    nuevo->nombre = nombre_;
+    nuevo->descripcion = descripcion_;
     if(vacio())
     {
         raiz = nuevo;
-        cout << raiz->valor <<endl;
     }
     else
     {
@@ -26,12 +27,11 @@ void arbol::insertar(nodoABB *temporal,int valor_)
             if(temporal->izquierda == nullptr)
             {
                 temporal->izquierda = nuevo;
-                cout << nuevo->valor <<endl;
             }
             else
             {
                 temporal = temporal->izquierda;
-                insertar(temporal,valor_);
+                insertar(temporal,valor_,nombre_,descripcion_);
             }
         }
         else
@@ -39,19 +39,18 @@ void arbol::insertar(nodoABB *temporal,int valor_)
             if(temporal->derecha == nullptr)
             {
                 temporal->derecha=nuevo;
-                cout << nuevo->valor <<endl;
             }
             else
             {
                 temporal=temporal->derecha;
-                insertar(temporal,valor_);
+                insertar(temporal,valor_,nombre_,descripcion_);
             }
         }
 
     }
 
 }
-void arbol::buscar(nodoABB *temporal, int valor_)
+bool arbol::buscar(nodoABB* temporal, int valor_)
 {
     if(!vacio())
     {
@@ -64,7 +63,7 @@ void arbol::buscar(nodoABB *temporal, int valor_)
             }
             else
             {
-                cout<< "no existe el valor " << valor_ << endl;
+                return false;
             }
         }
         else if(valor_ > temporal->valor)
@@ -76,12 +75,54 @@ void arbol::buscar(nodoABB *temporal, int valor_)
             }
             else
             {
-                cout<< "no existe el valor " << valor_ << endl;
+                return false;
             }
         }
         else
         {
-            cout<< "Valor encontrado " << temporal->valor <<endl;
+            cout << "**Activo Eliminado \n";
+            cout << "**ID = " << temporal->valor << endl;
+            cout << "**Nombre = " << temporal->nombre<< endl;
+            cout << "**Descripcion = " << temporal->descripcion<< endl;
+            return true;
+
+        }
+    }
+}
+void arbol::buscarParaModificar(nodoABB* temporal, int valor_,string descripcion_)
+{
+    if(!vacio())
+    {
+        if(valor_ < temporal->valor)
+        {
+            if (temporal->izquierda != nullptr)
+            {
+                temporal = temporal->izquierda;
+                buscar(temporal,valor_);
+            }
+            else
+            {
+                cout << "Activo no Existe" << endl;
+            }
+        }
+        else if(valor_ > temporal->valor)
+        {
+            if (temporal->derecha != nullptr)
+            {
+                temporal = temporal->derecha;
+                buscar(temporal,valor_);
+            }
+            else
+            {
+                cout << "Activo no Existe" << endl;
+            }
+        }
+        else
+        {
+            temporal->descripcion = descripcion_;
+            cout << "**Activo Modificado \n";
+            cout << "**ID = " << temporal->valor << "**Nombre = " << temporal->nombre << "**Descripcion = " << temporal->descripcion<< endl;
+
         }
     }
 }
@@ -100,16 +141,52 @@ nodoABB* arbol::eliminar(nodoABB *temporal,int valor_)
     {
         if(temporal->izquierda!=nullptr && temporal->derecha!=nullptr)
         {
-            nodoABB *cambio=  predecesor(temporal->izquierda);
+            bool esRaiz = false;
+            if(raiz == temporal){
+                esRaiz = true;
+                cout << "Es Raiz \n";
+            }
+            nodoABB *cambio =  predecesor(temporal->izquierda);
             temporal->valor = cambio->valor;
+            temporal->nombre = cambio->nombre;
+            temporal->descripcion = cambio->descripcion;
+            if(temporal->izquierda == cambio)
+            {
+                temporal->izquierda = nullptr;
+            }
+            else
+            {
+                eliminar(temporal->izquierda,cambio->valor);
+            }
+            cambio = nullptr;
+            if(esRaiz == true){
+                raiz = temporal;
+            }
+
         }
         else if(temporal->izquierda!=nullptr)
         {
+            bool esRaiz = false;
+            if(raiz == temporal){
+                esRaiz = true;
+                cout << "Es Raiz \n";
+            }
             temporal = temporal->izquierda;
+            if(esRaiz == true){
+                raiz = temporal;
+            }
         }
         else if(temporal->derecha!=nullptr)
         {
+            bool esRaiz = false;
+            if(raiz == temporal){
+                esRaiz = true;
+                cout << "Es Raiz \n";
+            }
             temporal = temporal->derecha;
+            if(esRaiz == true){
+                raiz = temporal;
+            }
         }
         else
         {
@@ -124,19 +201,16 @@ void arbol::mostrar(nodoABB *temporal)
     {
         cout <<  " -----Arbol------ "<<endl;
         mostrar(temporal->izquierda);
-        cout << temporal->valor <<endl;
+        cout << "id= " << temporal->valor << " Nombre = " << temporal->nombre <<endl;
         mostrar(temporal->derecha);
     }
 
 }
-
 nodoABB* arbol::predecesor(nodoABB *temporal)
 {
     if(temporal->derecha == nullptr)
     {
-        nodoABB *cambio = temporal;
-        temporal = nullptr;
-        return cambio;
+        return temporal;
     }
     else
     {

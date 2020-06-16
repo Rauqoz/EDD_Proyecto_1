@@ -9,7 +9,6 @@ menu::menu()
     matriz.crearUsuario("Rau", "rau","0","guatemala","claro");
     usuarioActual = 0;
 }
-//---------------------
 void menu::login()
 {
     do
@@ -32,8 +31,13 @@ void menu::login()
         else
         {
             usuarioActual = matriz.buscarUsuario(user,pass,departamento,empresa);
-            if(usuarioActual != 0){
+            if(usuarioActual != 0)
+            {
                 menuUser();
+            }
+            else
+            {
+                cout << "**No Existe el Usuario" << endl;;
             }
         }
 
@@ -59,35 +63,30 @@ void menu::menuUser()
         cin >> opcion;
         switch(opcion)
         {
-        case '0':
-            seguir = false;
-            break;
         case '1':
-            seguir = false;
             crearActivos();
             break;
         case '2':
-            seguir = false;
             eliminarActivos();
             break;
         case '3':
-            seguir = false;
             modificarActivos();
             break;
         case '4':
-            seguir = false;
             menuRentaActivos();
             break;
         case '5':
-            seguir = false;
             menuActivosRentados();
             break;
         case '6':
-            seguir = false;
             misActivosRentados();
             break;
         case '7':
+            cout << "**Cerrando Sesion" << endl;;
             seguir = false;
+            break;
+        case '8':
+            usuarioActual->arbolAVL.mostrar(usuarioActual->arbolAVL.raiz);
             break;
 
         default:
@@ -108,21 +107,33 @@ void menu::crearActivos()
     cin>> nombreActivo;
     cout << "Ingrese Descripcion"<< endl;
     cin >> descripcionActivo;
+    usuarioActual->aumentarContador();
+    usuarioActual->arbolAVL.insertar(usuarioActual->arbolAVL.raiz,usuarioActual->idContador,nombreActivo,descripcionActivo);
+
 }
 void menu::eliminarActivos()
 {
     cout << "-------------------------------------------------------"<< endl;
     cout << "%%%%%%%%%% Eliminar Activo %%%%%%%%%%"<< endl;
+    usuarioActual->arbolAVL.mostrar(usuarioActual->arbolAVL.raiz);
     cout << "Ingresa ID Activo"<< endl;
     cin >> idActivo;
+    if(usuarioActual->arbolAVL.buscar(usuarioActual->arbolAVL.raiz,idActivo))
+    {
+        usuarioActual->arbolAVL.eliminar(usuarioActual->arbolAVL.raiz,idActivo);
+    }
 
 }
 void menu::modificarActivos()
 {
     cout << "-------------------------------------------------------"<< endl;
     cout << "%%%%%%%%%% Modificar Activo %%%%%%%%%%"<< endl;
+    usuarioActual->arbolAVL.mostrar(usuarioActual->arbolAVL.raiz);
     cout << "Ingresa ID Activo"<< endl;
     cin >> idActivo;
+    cout << "Ingresa Descripcion Nueva"<< endl;
+    cin >> descripcionActivo;
+    usuarioActual->arbolAVL.buscarParaModificar(usuarioActual->arbolAVL.raiz,idActivo,descripcionActivo);
 
 }
 void menu::menuRentaActivos()
@@ -195,6 +206,8 @@ void menu::crearUsuarios()
     cout << "-------------------------------------------------------"<< endl;
     cout << "%%%%%%%%%% Administrador %%%%%%%%%%"<< endl;
     cout << "%%%%%%%%%% Crear Usuario %%%%%%%%%%"<< endl;
+    cout << "Ingresa Nombre"<< endl;
+    cin >> nombre ;
     cout << "Ingresa Usuario"<< endl;
     cin >> user ;
     cout << "Ingresa Password"<< endl;
@@ -203,5 +216,7 @@ void menu::crearUsuarios()
     cin >> departamento;
     cout << "Ingresa Empresa"<< endl;
     cin >> empresa;
+    matriz.crearUsuario(nombre,user,pass,departamento,empresa);
+    cout << "**Usuario Creado" << endl;
 
 }
