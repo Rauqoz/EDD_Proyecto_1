@@ -1,5 +1,6 @@
 #include "arbol.h"
 #include <iostream>
+#include <ctime>
 #include "nodoABB.h"
 using namespace std;
 
@@ -13,9 +14,18 @@ bool arbol::vacio()
 }
 void arbol::insertar(nodoABB *temporal,int valor_,string nombre_, string descripcion_)
 {
+    srand(time(0));
+    string idCodigo;
+    static const char letras[] = {'a','b','c','d','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'};
+    for(int i = 0; i < 15; i++)
+    {
+        int rango = 0 + (rand() % 33);
+        idCodigo += letras[rango];
+    }
     nodoABB *nuevo = new nodoABB(valor_);
     nuevo->nombre = nombre_;
     nuevo->descripcion = descripcion_;
+    nuevo->codigo = idCodigo;
     if(vacio())
     {
         raiz = nuevo;
@@ -89,6 +99,53 @@ bool arbol::buscar(nodoABB* temporal, int valor_)
         }
     }
 }
+bool arbol::rentar_devolver(nodoABB* temporal, int valor_)
+{
+    if(!vacio())
+    {
+        if(valor_ < temporal->valor)
+        {
+            if (temporal->izquierda != nullptr)
+            {
+                temporal = temporal->izquierda;
+                buscar(temporal,valor_);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if(valor_ > temporal->valor)
+        {
+            if (temporal->derecha != nullptr)
+            {
+                temporal = temporal->derecha;
+                buscar(temporal,valor_);
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            if(temporal->enRenta == false)
+            {
+                cout << "**Activo a Rentar \n";
+                cout << "**ID = " << temporal->valor << " Codigo = " << temporal->codigo << " Nombre = " << temporal->nombre << " Descripcion = " << temporal->descripcion << endl;
+                temporal->enRenta = true;
+            }
+            else
+            {
+                cout << "**Activo a Devolver \n";
+                cout << "**ID = " << temporal->valor << " Codigo = " << temporal->codigo << " Nombre = " << temporal->nombre << " Descripcion = " << temporal->descripcion << endl;
+                temporal->enRenta = false;
+            }
+            return true;
+
+        }
+    }
+}
 void arbol::buscarParaModificar(nodoABB* temporal, int valor_,string descripcion_)
 {
     if(!vacio())
@@ -121,7 +178,7 @@ void arbol::buscarParaModificar(nodoABB* temporal, int valor_,string descripcion
         {
             temporal->descripcion = descripcion_;
             cout << "**Activo Modificado \n";
-            cout << "**ID = " << temporal->valor << "**Nombre = " << temporal->nombre << "**Descripcion = " << temporal->descripcion<< endl;
+            cout << "**ID = " << temporal->valor << " Codigo = " << temporal->codigo << "**Nombre = " << temporal->nombre << "**Descripcion = " << temporal->descripcion<< endl;
 
         }
     }
@@ -142,7 +199,8 @@ nodoABB* arbol::eliminar(nodoABB *temporal,int valor_)
         if(temporal->izquierda!=nullptr && temporal->derecha!=nullptr)
         {
             bool esRaiz = false;
-            if(raiz == temporal){
+            if(raiz == temporal)
+            {
                 esRaiz = true;
                 cout << "Es Raiz \n";
             }
@@ -150,16 +208,12 @@ nodoABB* arbol::eliminar(nodoABB *temporal,int valor_)
             temporal->valor = cambio->valor;
             temporal->nombre = cambio->nombre;
             temporal->descripcion = cambio->descripcion;
-            if(temporal->izquierda == cambio)
-            {
-                temporal->izquierda = nullptr;
-            }
-            else
-            {
-                eliminar(temporal->izquierda,cambio->valor);
-            }
+
+            eliminar(temporal->izquierda,cambio->valor);
+
             cambio = nullptr;
-            if(esRaiz == true){
+            if(esRaiz == true)
+            {
                 raiz = temporal;
             }
 
@@ -167,24 +221,28 @@ nodoABB* arbol::eliminar(nodoABB *temporal,int valor_)
         else if(temporal->izquierda!=nullptr)
         {
             bool esRaiz = false;
-            if(raiz == temporal){
+            if(raiz == temporal)
+            {
                 esRaiz = true;
                 cout << "Es Raiz \n";
             }
             temporal = temporal->izquierda;
-            if(esRaiz == true){
+            if(esRaiz == true)
+            {
                 raiz = temporal;
             }
         }
         else if(temporal->derecha!=nullptr)
         {
             bool esRaiz = false;
-            if(raiz == temporal){
+            if(raiz == temporal)
+            {
                 esRaiz = true;
                 cout << "Es Raiz \n";
             }
             temporal = temporal->derecha;
-            if(esRaiz == true){
+            if(esRaiz == true)
+            {
                 raiz = temporal;
             }
         }
@@ -201,7 +259,35 @@ void arbol::mostrar(nodoABB *temporal)
     {
         cout <<  " -----Arbol------ "<<endl;
         mostrar(temporal->izquierda);
-        cout << "id= " << temporal->valor << " Nombre = " << temporal->nombre <<endl;
+        cout << "id= " << temporal->valor << " Codigo = " << temporal->codigo << " Nombre = " << temporal->nombre << " Descripcion = " << temporal->descripcion <<endl;
+        mostrar(temporal->derecha);
+    }
+
+}
+void arbol::mostrarCatalogo(nodoABB *temporal)
+{
+    if(temporal != nullptr)
+    {
+        cout <<  " -----Arbol------ "<<endl;
+        mostrar(temporal->izquierda);
+        if(temporal->enRenta == false)
+        {
+            cout << "id= " << temporal->valor << " Codigo = " << temporal->codigo << " Nombre = " << temporal->nombre << " Descripcion = " << temporal->descripcion << " Tiempo de Renta = 100 dias" <<endl;
+        }
+        mostrar(temporal->derecha);
+    }
+
+}
+void arbol::mostrarActivosRentados(nodoABB *temporal)
+{
+    if(temporal != nullptr)
+    {
+        cout <<  " -----Arbol------ "<<endl;
+        mostrar(temporal->izquierda);
+        if(temporal->enRenta == true)
+        {
+            cout << "id= " << temporal->valor << " Codigo = " << temporal->codigo << " Nombre = " << temporal->nombre << " Descripcion = " << temporal->descripcion <<endl;
+        }
         mostrar(temporal->derecha);
     }
 

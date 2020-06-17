@@ -11,7 +11,9 @@ public:
     nodoABB *izquierda;
     nodoABB *derecha;
     int valor;
+    string codigo;
     string nombre, descripcion;
+    bool enRenta;
 
 protected:
 

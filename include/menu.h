@@ -29,7 +29,7 @@ private:
     string nombre,user, pass,departamento,empresa;
     char opcion;
     string nombreActivo,descripcionActivo;
-    int idActivo;
+    int idActivo, diasRenta;
     bool seguir = true;
 
 };

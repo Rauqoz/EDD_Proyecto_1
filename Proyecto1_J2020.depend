@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1592279629 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\main.cpp
+1592363887 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\main.cpp
 	<iostream>
 	"menu.h"
 	"matrizD.h"
@@ -10,13 +10,13 @@
 1591770406 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\prueba.cpp
 	"prueba.h"
 
-1592279068 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\menu.cpp
+1592371362 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\menu.cpp
 	"menu.h"
 	"matrizD.h"
 	"nodoM.h"
 	<iostream>
 
-1592274883 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\menu.h
+1592371059 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\menu.h
 	<iostream>
 	"matrizD.h"
 	"nodoM.h"
@@ -29,13 +29,13 @@
 	<iostream>
 	"nodoABB.h"
 
-1592271316 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\nodoabb.h
+1592366737 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\nodoabb.h
 	<iostream>
 
-1591929817 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodoabb.cpp
+1592366745 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodoabb.cpp
 	"nodoABB.h"
 
-1592278362 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\arbol.h
+1592370399 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\arbol.h
 	"nodoABB.h"
 
 1591863264 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\nodo.h
@@ -43,7 +43,7 @@
 1591863288 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodo.cpp
 	"nodo.h"
 
-1592279611 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\arbol.cpp
+1592282549 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\arbol.cpp
 	"arbol.h"
 	<iostream>
 	"nodoABB.h"

@@ -138,31 +138,79 @@ void menu::modificarActivos()
 }
 void menu::menuRentaActivos()
 {
-    cout << "-------------------------------------------------------"<< endl;
-    cout << "%%%%%%%%%% Catalogo Activos %%%%%%%%%%"<< endl;
-    cout << "%%%%%%%%%% 1. Rentar Activo %%%%%%%%%%"<< endl;
-    cout << "%%%%%%%%%% 2. Regresar a Menu %%%%%%%%%%"<< endl;
-    cout << "Ingresa Opcion"<< endl;
-    cin >> opcion;
+    do
+    {
+        cout << "-------------------------------------------------------"<< endl;
+        cout << "%%%%%%%%%% Catalogo Activos %%%%%%%%%%"<< endl;
+        usuarioActual->arbolAVL.mostrarCatalogo(usuarioActual->arbolAVL.raiz);
+        cout << "%%%%%%%%%% 1. Rentar Activo %%%%%%%%%%"<< endl;
+        cout << "%%%%%%%%%% 2. Regresar a Menu %%%%%%%%%%"<< endl;
+        cout << "Ingresa Opcion"<< endl;
+        cin >> opcion;
+        switch(opcion)
+        {
+        case '1':
+            cout << "Ingresa Id Activo a Rentar" << endl;
+            cin >> idActivo;
+            cout << "Ingresa Dias a Rentar" << endl;
+            cin >> diasRenta;
+            if(usuarioActual->arbolAVL.rentar_devolver(usuarioActual->arbolAVL.raiz,idActivo))
+            {
+                cout << "**Rentado" << endl;
+            }
+            break;
+
+        case '2':
+            seguir = false;
+            break;
+
+        default:
+            break;
+        }
+    }
+    while(seguir == true);
+    seguir = true;
 
 }
 void menu::menuActivosRentados()
 {
-    cout << "-------------------------------------------------------"<< endl;
-    cout << "%%%%%%%%%% Activos Rentados %%%%%%%%%%"<< endl;
-    cout << "%%%%%%%%%% 1. Registrar Devolucion %%%%%%%%%%"<< endl;
-    cout << "%%%%%%%%%% 2. Regresar a Menu %%%%%%%%%%"<< endl;
-    cout << "Ingresa Opcion"<< endl;
-    cin >> opcion;
+    do
+    {
+        cout << "-------------------------------------------------------"<< endl;
+        cout << "%%%%%%%%%% Activos Rentados %%%%%%%%%%"<< endl;
+        usuarioActual->arbolAVL.mostrarActivosRentados(usuarioActual->arbolAVL.raiz);
+        cout << "%%%%%%%%%% 1. Registrar Devolucion %%%%%%%%%%"<< endl;
+        cout << "%%%%%%%%%% 2. Regresar a Menu %%%%%%%%%%"<< endl;
+        cout << "Ingresa Opcion"<< endl;
+        cin >> opcion;
+        switch(opcion)
+        {
+        case '1':
+            cout << "Ingresa Id Activo a Devolver" << endl;
+            cin >> idActivo;
+            if(usuarioActual->arbolAVL.rentar_devolver(usuarioActual->arbolAVL.raiz,idActivo))
+            {
+                cout << "**Devuelto" << endl;
+            }
+            break;
+
+        case '2':
+            seguir = false;
+            break;
+
+        default:
+            break;
+        }
+    }
+    while(seguir == true);
+    seguir = true;
 
 }
 void menu::misActivosRentados()
 {
     cout << "-------------------------------------------------------"<< endl;
     cout << "%%%%%%%%%% Mis Activos Rentados %%%%%%%%%%"<< endl;
-    cout << "%%%%%%%%%% 1. Regresar a Menu %%%%%%%%%%"<< endl;
-    cout << "Ingresa Opcion"<< endl;
-    cin >> opcion;
+    usuarioActual->arbolAVL.mostrarActivosRentados(usuarioActual->arbolAVL.raiz);
 
 }
 void menu::menuAdministrador()
@@ -179,15 +227,15 @@ void menu::menuAdministrador()
         cout << "%%%%%%%%%% 6. Reporte Activos de un Usuario %%%%%%%%%%"<< endl;
         cout << "%%%%%%%%%% 7. Activos Rentados por un Usuario %%%%%%%%%%"<< endl;
         cout << "%%%%%%%%%% 8. Ordenar Transacciones %%%%%%%%%%"<< endl;
+        cout << "%%%%%%%%%% 9. Cerrar Sesion %%%%%%%%%%"<< endl;
         cout << "Ingresa Opcion"<< endl;
         cin >> opcion;
         switch(opcion)
         {
-        case '0':
+        case '9':
             seguir = false;
             break;
         case '1':
-            seguir = false;
             crearUsuarios();
             break;
 
