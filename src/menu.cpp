@@ -33,6 +33,8 @@ void menu::login()
             usuarioActual = matriz.buscarUsuario(user,pass,departamento,empresa);
             if(usuarioActual != 0)
             {
+                depaActual = departamento;
+                empreActual = empresa;
                 menuUser();
             }
             else
@@ -156,6 +158,8 @@ void menu::menuRentaActivos()
             cin >> diasRenta;
             if(usuarioActual->arbolAVL.rentar_devolver(usuarioActual->arbolAVL.raiz,idActivo))
             {
+                nodoABB* transa = usuarioActual->arbolAVL.buscarParaTransaccion(usuarioActual->arbolAVL.raiz,idActivo);
+                transacciones.insertar(idActivo,transa->codigo,usuarioActual->user,depaActual,empreActual,diasRenta);
                 cout << "**Rentado" << endl;
             }
             break;
@@ -190,6 +194,7 @@ void menu::menuActivosRentados()
             cin >> idActivo;
             if(usuarioActual->arbolAVL.rentar_devolver(usuarioActual->arbolAVL.raiz,idActivo))
             {
+                transacciones.devolver(idActivo,usuarioActual->user);
                 cout << "**Devuelto" << endl;
             }
             break;
@@ -237,6 +242,9 @@ void menu::menuAdministrador()
             break;
         case '1':
             crearUsuarios();
+            break;
+        case '5':
+            transacciones.mostrar();
             break;
 
         default:

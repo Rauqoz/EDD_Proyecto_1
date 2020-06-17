@@ -10,16 +10,17 @@
 1591770406 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\prueba.cpp
 	"prueba.h"
 
-1592371362 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\menu.cpp
+1592379912 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\menu.cpp
 	"menu.h"
 	"matrizD.h"
 	"nodoM.h"
 	<iostream>
 
-1592371059 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\menu.h
+1592379811 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\menu.h
 	<iostream>
 	"matrizD.h"
 	"nodoM.h"
+	"listaC.h"
 
 1591860649 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\arbolabb.h
 	"nodoABB.h"
@@ -35,7 +36,7 @@
 1592366745 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodoabb.cpp
 	"nodoABB.h"
 
-1592370399 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\arbol.h
+1592378848 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\arbol.h
 	"nodoABB.h"
 
 1591863264 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\nodo.h
@@ -43,9 +44,10 @@
 1591863288 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodo.cpp
 	"nodo.h"
 
-1592282549 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\arbol.cpp
+1592380260 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\arbol.cpp
 	"arbol.h"
 	<iostream>
+	<ctime>
 	"nodoABB.h"
 
 1592278598 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodom.cpp
@@ -72,4 +74,20 @@
 	"matrizD.h"
 	"nodoM.h"
 	<iostream>
+
+1592379501 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\listac.h
+	"nodoC.h"
+	<iostream>
+
+1592379317 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\nodoc.h
+	<iostream>
+
+1592379325 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodoc.cpp
+	"nodoC.h"
+
+1592380480 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\listac.cpp
+	"listaC.h"
+	"nodoC.h"
+	<iostream>
+	<ctime>
 

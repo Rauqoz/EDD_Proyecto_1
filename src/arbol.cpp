@@ -26,6 +26,7 @@ void arbol::insertar(nodoABB *temporal,int valor_,string nombre_, string descrip
     nuevo->nombre = nombre_;
     nuevo->descripcion = descripcion_;
     nuevo->codigo = idCodigo;
+
     if(vacio())
     {
         raiz = nuevo;
@@ -99,6 +100,41 @@ bool arbol::buscar(nodoABB* temporal, int valor_)
         }
     }
 }
+nodoABB* arbol::buscarParaTransaccion(nodoABB* temporal, int valor_)
+{
+    if(!vacio())
+    {
+        if(valor_ < temporal->valor)
+        {
+            if (temporal->izquierda != nullptr)
+            {
+                temporal = temporal->izquierda;
+                buscarParaTransaccion(temporal,valor_);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else if(valor_ > temporal->valor)
+        {
+            if (temporal->derecha != nullptr)
+            {
+                temporal = temporal->derecha;
+                buscarParaTransaccion(temporal,valor_);
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        else
+        {
+            return temporal;
+
+        }
+    }
+}
 bool arbol::rentar_devolver(nodoABB* temporal, int valor_)
 {
     if(!vacio())
@@ -108,7 +144,7 @@ bool arbol::rentar_devolver(nodoABB* temporal, int valor_)
             if (temporal->izquierda != nullptr)
             {
                 temporal = temporal->izquierda;
-                buscar(temporal,valor_);
+                rentar_devolver(temporal,valor_);
             }
             else
             {
@@ -120,7 +156,7 @@ bool arbol::rentar_devolver(nodoABB* temporal, int valor_)
             if (temporal->derecha != nullptr)
             {
                 temporal = temporal->derecha;
-                buscar(temporal,valor_);
+                rentar_devolver(temporal,valor_);
             }
             else
             {
@@ -155,7 +191,7 @@ void arbol::buscarParaModificar(nodoABB* temporal, int valor_,string descripcion
             if (temporal->izquierda != nullptr)
             {
                 temporal = temporal->izquierda;
-                buscar(temporal,valor_);
+                buscarParaModificar(temporal,valor_,descripcion_);
             }
             else
             {
@@ -167,7 +203,7 @@ void arbol::buscarParaModificar(nodoABB* temporal, int valor_,string descripcion
             if (temporal->derecha != nullptr)
             {
                 temporal = temporal->derecha;
-                buscar(temporal,valor_);
+                buscarParaModificar(temporal,valor_,descripcion_);
             }
             else
             {
@@ -269,12 +305,12 @@ void arbol::mostrarCatalogo(nodoABB *temporal)
     if(temporal != nullptr)
     {
         cout <<  " -----Arbol------ "<<endl;
-        mostrar(temporal->izquierda);
+        mostrarCatalogo(temporal->izquierda);
         if(temporal->enRenta == false)
         {
             cout << "id= " << temporal->valor << " Codigo = " << temporal->codigo << " Nombre = " << temporal->nombre << " Descripcion = " << temporal->descripcion << " Tiempo de Renta = 100 dias" <<endl;
         }
-        mostrar(temporal->derecha);
+        mostrarCatalogo(temporal->derecha);
     }
 
 }
@@ -283,12 +319,12 @@ void arbol::mostrarActivosRentados(nodoABB *temporal)
     if(temporal != nullptr)
     {
         cout <<  " -----Arbol------ "<<endl;
-        mostrar(temporal->izquierda);
+        mostrarActivosRentados(temporal->izquierda);
         if(temporal->enRenta == true)
         {
             cout << "id= " << temporal->valor << " Codigo = " << temporal->codigo << " Nombre = " << temporal->nombre << " Descripcion = " << temporal->descripcion <<endl;
         }
-        mostrar(temporal->derecha);
+        mostrarActivosRentados(temporal->derecha);
     }
 
 }

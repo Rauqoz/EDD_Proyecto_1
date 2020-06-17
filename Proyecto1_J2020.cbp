@@ -35,16 +35,20 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="include/arbol.h" />
+		<Unit filename="include/listaC.h" />
 		<Unit filename="include/matrizD.h" />
 		<Unit filename="include/menu.h" />
 		<Unit filename="include/nodoABB.h" />
+		<Unit filename="include/nodoC.h" />
 		<Unit filename="include/nodoM.h" />
 		<Unit filename="include/prueba.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/arbol.cpp" />
+		<Unit filename="src/listaC.cpp" />
 		<Unit filename="src/matrizD.cpp" />
 		<Unit filename="src/menu.cpp" />
 		<Unit filename="src/nodoABB.cpp" />
+		<Unit filename="src/nodoC.cpp" />
 		<Unit filename="src/nodoM.cpp" />
 		<Unit filename="src/prueba.cpp" />
 		<Extensions>

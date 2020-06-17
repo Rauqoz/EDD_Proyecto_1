@@ -3,6 +3,7 @@
 #include <iostream>
 #include "matrizD.h"
 #include "nodoM.h"
+#include "listaC.h"
 using namespace std;
 
 
@@ -24,12 +25,15 @@ public:
 protected:
 
 private:
+    string depaActual,empreActual;
     matrizD matriz;
+    listaC transacciones;
     nodoM* usuarioActual;
     string nombre,user, pass,departamento,empresa;
     char opcion;
     string nombreActivo,descripcionActivo;
-    int idActivo, diasRenta;
+    int idActivo;
+    string diasRenta;
     bool seguir = true;
 
 };
