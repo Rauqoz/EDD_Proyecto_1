@@ -11,6 +11,7 @@ public:
     nodoABB *izquierda;
     nodoABB *derecha;
     int valor;
+    int altura;
     string codigo;
     string nombre, descripcion;
     bool enRenta;

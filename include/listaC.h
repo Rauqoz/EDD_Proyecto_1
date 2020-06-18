@@ -13,7 +13,7 @@ class listaC
         nodoC* fin;
         nodoC* insertar(int idActivo_,string codigoActivo_,string user_,string departamento_,string empresa_,string tiempo_);
         void devolver(int idActivo_,string user_);
-        void mostrar();
+        void mostrar(nodoC* temporal);
 
 };
 

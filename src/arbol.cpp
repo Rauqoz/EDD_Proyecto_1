@@ -12,6 +12,158 @@ bool arbol::vacio()
 {
     return (raiz == nullptr);
 }
+void arbol::equilibrarArbol(nodoABB*& temporal)
+{
+
+    if(temporal != 0)
+    {
+        equilibrarArbol(temporal->izquierda);
+        equilibrarArbol(temporal->derecha);
+        int Izq, Dch;
+        if(temporal->izquierda != 0)
+        {
+            Izq = temporal->izquierda->altura;
+        }
+        else
+        {
+            Izq = 0;
+        }
+        if(temporal->derecha != 0)
+        {
+            Dch = temporal->derecha->altura;
+        }
+        else
+        {
+            Dch = 0;
+        }
+
+        if(Izq - Dch < -1)
+        {
+
+            if(temporal->derecha->izquierda != 0)
+            {
+                Izq = temporal->derecha->izquierda->altura;
+            }
+            else
+            {
+                Izq = 0;
+            }
+            if(temporal->derecha->derecha != 0)
+            {
+                Dch = temporal->derecha->derecha->altura;
+            }
+            else
+            {
+                Dch = 0;
+            }
+
+            if(Izq <= Dch)
+            {
+                cout << "x";
+                rotarIzquierda(temporal);
+            }
+            else
+            {
+                cout << "y";
+                rotarDerecha(temporal->derecha);
+                rotarIzquierda(temporal);
+            }
+        }
+        else if(Izq - Dch > 1)
+        {
+            if(temporal->izquierda->izquierda != 0)
+            {
+                Izq = temporal->izquierda->izquierda->altura;
+            }
+            else
+            {
+                Izq = 0;
+            }
+            if(temporal->izquierda->derecha != 0)
+            {
+                Dch = temporal->izquierda->derecha->altura;
+            }
+            else
+            {
+                Dch = 0;
+            }
+
+            if(Izq >= Dch)
+            {
+                cout << "a";
+                rotarDerecha(temporal);
+            }
+            else
+            {
+                cout << "b";
+                rotarIzquierda(temporal->izquierda);
+                rotarDerecha(temporal);
+            }
+        }
+        calcularAltura(raiz);
+
+    }
+
+
+}
+void arbol::rotarIzquierda(nodoABB*& temporal)
+{
+    bool esRaiz = false;
+    if(raiz == temporal)
+    {
+        esRaiz = true;
+        cout << "Es Raiz \n";
+    }
+    nodoABB* cambio = temporal->derecha;
+    temporal->derecha = cambio->izquierda;
+    cambio->izquierda = temporal;
+    temporal = cambio;
+    if(esRaiz)
+    {
+        raiz = cambio;
+    }
+
+}
+void arbol::rotarDerecha(nodoABB*& temporal)
+{
+    bool esRaiz = false;
+    if(raiz == temporal)
+    {
+        esRaiz = true;
+        cout << "Es Raiz \n";
+    }
+    nodoABB* cambio = temporal->izquierda;
+    temporal->izquierda = cambio->derecha;
+    cambio->derecha = temporal;
+    temporal = cambio;
+    if(esRaiz == true)
+    {
+        raiz = cambio;
+    }
+
+}
+int arbol::calcularAltura(nodoABB* temporal)
+{
+    int alturaI = 1, alturaD = 1 ;
+
+    if(temporal->izquierda != 0)
+    {
+        alturaI += calcularAltura(temporal->izquierda);
+    }
+    if(temporal->derecha != 0)
+    {
+        alturaD += calcularAltura(temporal->derecha);
+    }
+    if(alturaI >= alturaD)
+    {
+        temporal->altura = alturaI;
+    }
+    else if(alturaD > alturaI)
+    {
+        temporal->altura = alturaD;
+    }
+    return temporal->altura;
+}
 void arbol::insertar(nodoABB *temporal,int valor_,string nombre_, string descripcion_)
 {
     srand(time(0));
@@ -26,10 +178,12 @@ void arbol::insertar(nodoABB *temporal,int valor_,string nombre_, string descrip
     nuevo->nombre = nombre_;
     nuevo->descripcion = descripcion_;
     nuevo->codigo = idCodigo;
+    nuevo->altura = 0;
 
     if(vacio())
     {
         raiz = nuevo;
+        calcularAltura(raiz);
     }
     else
     {
@@ -38,6 +192,8 @@ void arbol::insertar(nodoABB *temporal,int valor_,string nombre_, string descrip
             if(temporal->izquierda == nullptr)
             {
                 temporal->izquierda = nuevo;
+                calcularAltura(raiz);
+                equilibrarArbol(raiz);
             }
             else
             {
@@ -50,6 +206,8 @@ void arbol::insertar(nodoABB *temporal,int valor_,string nombre_, string descrip
             if(temporal->derecha == nullptr)
             {
                 temporal->derecha=nuevo;
+                calcularAltura(raiz);
+                equilibrarArbol(raiz);
             }
             else
             {
@@ -219,7 +377,7 @@ void arbol::buscarParaModificar(nodoABB* temporal, int valor_,string descripcion
         }
     }
 }
-nodoABB* arbol::eliminar(nodoABB *temporal,int valor_)
+nodoABB* arbol::eliminar(nodoABB *&temporal,int valor_)
 {
 
     if (valor_ < temporal->valor)
@@ -244,6 +402,8 @@ nodoABB* arbol::eliminar(nodoABB *temporal,int valor_)
             temporal->valor = cambio->valor;
             temporal->nombre = cambio->nombre;
             temporal->descripcion = cambio->descripcion;
+            temporal->codigo =  cambio->codigo;
+            temporal->enRenta = cambio->enRenta;
 
             eliminar(temporal->izquierda,cambio->valor);
 
@@ -263,6 +423,8 @@ nodoABB* arbol::eliminar(nodoABB *temporal,int valor_)
                 cout << "Es Raiz \n";
             }
             temporal = temporal->izquierda;
+            calcularAltura(raiz);
+            equilibrarArbol(raiz);
             if(esRaiz == true)
             {
                 raiz = temporal;
@@ -277,6 +439,8 @@ nodoABB* arbol::eliminar(nodoABB *temporal,int valor_)
                 cout << "Es Raiz \n";
             }
             temporal = temporal->derecha;
+            calcularAltura(raiz);
+            equilibrarArbol(raiz);
             if(esRaiz == true)
             {
                 raiz = temporal;
@@ -285,6 +449,8 @@ nodoABB* arbol::eliminar(nodoABB *temporal,int valor_)
         else
         {
             temporal=nullptr;
+            calcularAltura(raiz);
+            equilibrarArbol(raiz);
         }
     }
     return temporal;
@@ -297,6 +463,17 @@ void arbol::mostrar(nodoABB *temporal)
         mostrar(temporal->izquierda);
         cout << "id= " << temporal->valor << " Codigo = " << temporal->codigo << " Nombre = " << temporal->nombre << " Descripcion = " << temporal->descripcion <<endl;
         mostrar(temporal->derecha);
+    }
+
+}
+void arbol::mostrarPreOrden(nodoABB *temporal)
+{
+    if(temporal != nullptr)
+    {
+        cout <<  " -----Arbol------ "<<endl;
+        cout << "id= " << temporal->valor << " Codigo = " << temporal->codigo << " Nombre = " << temporal->nombre  << " Altura = " << temporal->altura <<endl;
+        mostrarPreOrden(temporal->izquierda);
+        mostrarPreOrden(temporal->derecha);
     }
 
 }

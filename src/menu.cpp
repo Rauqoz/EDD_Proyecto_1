@@ -90,6 +90,9 @@ void menu::menuUser()
         case '8':
             usuarioActual->arbolAVL.mostrar(usuarioActual->arbolAVL.raiz);
             break;
+        case '9':
+            usuarioActual->arbolAVL.mostrarPreOrden(usuarioActual->arbolAVL.raiz);
+            break;
 
         default:
             break;
@@ -244,7 +247,7 @@ void menu::menuAdministrador()
             crearUsuarios();
             break;
         case '5':
-            transacciones.mostrar();
+            transacciones.mostrar(transacciones.inicio);
             break;
 
         default:

@@ -49,19 +49,19 @@ nodoC* listaC::insertar(int idActivo_,string codigoActivo_,string user_,string d
     }
     return nuevo;
 }
-void listaC::mostrar()
+void listaC::mostrar(nodoC* temporal)
 {
-    nodoC* temporal = inicio;
+
     cout << "**Historial de Transacciones General" << endl;
-    do
+    if(temporal != 0)
     {
         cout << "Transaccion " << temporal->idTransaccion << " - id_activo -  " << temporal->idActivo << " - codigo_activo - " << temporal->codigoActivo << " - " << temporal->user << " - " << temporal->departamento << " - " << temporal->empresa << " - " << temporal->fecha << " - " << temporal->tiempo << " Dias" << endl;
-        temporal = temporal->siguiente;
-        if(temporal == inicio){
-            break;
+        if(temporal != fin)
+        {
+            mostrar(temporal->siguiente);
         }
+
     }
-    while(temporal->siguiente != 0);
 
 }
 void listaC::devolver(int idActivo_,string user_)

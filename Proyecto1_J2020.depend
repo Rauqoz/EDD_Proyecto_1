@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1592363887 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\main.cpp
+1592518631 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\main.cpp
 	<iostream>
 	"menu.h"
 	"matrizD.h"
@@ -10,7 +10,7 @@
 1591770406 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\prueba.cpp
 	"prueba.h"
 
-1592379912 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\menu.cpp
+1592460963 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\menu.cpp
 	"menu.h"
 	"matrizD.h"
 	"nodoM.h"
@@ -30,13 +30,13 @@
 	<iostream>
 	"nodoABB.h"
 
-1592366737 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\nodoabb.h
+1592518584 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\nodoabb.h
 	<iostream>
 
-1592366745 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodoabb.cpp
+1592469312 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodoabb.cpp
 	"nodoABB.h"
 
-1592378848 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\arbol.h
+1592518608 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\arbol.h
 	"nodoABB.h"
 
 1591863264 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\nodo.h
@@ -44,7 +44,7 @@
 1591863288 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodo.cpp
 	"nodo.h"
 
-1592380260 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\arbol.cpp
+1592518601 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\arbol.cpp
 	"arbol.h"
 	<iostream>
 	<ctime>
@@ -75,7 +75,7 @@
 	"nodoM.h"
 	<iostream>
 
-1592379501 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\listac.h
+1592519076 c:\users\raul4\documents\codeblocks\proyecto1_j2020\include\listac.h
 	"nodoC.h"
 	<iostream>
 
@@ -85,7 +85,7 @@
 1592379325 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\nodoc.cpp
 	"nodoC.h"
 
-1592380480 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\listac.cpp
+1592380911 source:c:\users\raul4\documents\codeblocks\proyecto1_j2020\src\listac.cpp
 	"listaC.h"
 	"nodoC.h"
 	<iostream>
