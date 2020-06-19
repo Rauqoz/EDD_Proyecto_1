@@ -1,6 +1,7 @@
 #ifndef arbol_H
 #define arbol_H
 #include "nodoABB.h"
+#include <fstream>
 using namespace std;
 
 class arbol
@@ -10,6 +11,7 @@ class arbol
 public:
     arbol();
     nodoABB *raiz;
+    nodoABB* depaReporte;
     bool vacio();
     void insertar(nodoABB *temporal,int valor_,string nombre_, string descripcion_);
     void mostrar(nodoABB *temporal);
@@ -26,6 +28,10 @@ public:
     void equilibrarArbol(nodoABB*& temporal);
     void rotarIzquierda(nodoABB*& temporal);
     void rotarDerecha(nodoABB*& temporal);
+    void startReporteActivosDeUsuario();
+    void startReporteActivosRentadosDeUsuario();
+    void reporteActivosDeUsuario(nodoABB*& temporal, ofstream& archivo);
+    void reporteActivosRentadosDeUsuario(nodoABB*& temporal, ofstream& archivo);
 
 
 protected:

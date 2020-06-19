@@ -2,6 +2,7 @@
 #define MATRIZD_H
 #include "nodoM.h"
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 
@@ -19,6 +20,7 @@ public:
     nodoM* buscarDepartamento(string depa_);
     nodoM* buscarEmpresa(string empre_);
     nodoM* buscarUsuario(string user_,string pass_,string depa_,string empre_);
+    nodoM* buscarUsuarioReportes(string user_);
     void mostrarDepartamentos();
     void mostrarEmpresas();
     void mostrarUsuariosDepartamento(string depa_);

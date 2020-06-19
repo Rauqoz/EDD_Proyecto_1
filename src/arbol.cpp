@@ -2,11 +2,13 @@
 #include <iostream>
 #include <ctime>
 #include "nodoABB.h"
+#include <fstream>
 using namespace std;
 
 arbol::arbol()
 {
     raiz = nullptr;
+    depaReporte = 0;
 }
 bool arbol::vacio()
 {
@@ -514,5 +516,93 @@ nodoABB* arbol::predecesor(nodoABB *temporal)
     else
     {
         return predecesor(temporal->derecha);
+    }
+}
+void arbol::startReporteActivosDeUsuario()
+{
+    ofstream archivo;
+    string label = "Reporte de Activos de Usuario";
+    archivo.open("reporteActivosUsuario.dot");
+    string inicioDot = "digraph G {";
+    string finalDot = "}";
+    archivo << inicioDot;
+    archivo << "label = \"" + label  + "\""<< endl;
+    archivo << "node[shape = circle];";
+
+    reporteActivosDeUsuario(raiz,archivo);
+
+    archivo << finalDot << endl;
+    archivo.close();
+    system("C:\\Graphviz2.38\\bin\\dot -Tpng reporteActivosUsuario.dot -o reporteActivosUsuario.png");
+}
+void arbol::startReporteActivosRentadosDeUsuario()
+{
+    ofstream archivo;
+    string label = "Reporte de Activos Rentados de Usuario";
+    archivo.open("reporteActivosRentadosUsuario.dot");
+    string inicioDot = "digraph G {";
+    string finalDot = "}";
+    archivo << inicioDot;
+    archivo << "label = \"" + label  + "\""<< endl;
+    archivo << "node[shape = circle];";
+
+    reporteActivosRentadosDeUsuario(raiz,archivo);
+
+    archivo << finalDot << endl;
+    archivo.close();
+    system("C:\\Graphviz2.38\\bin\\dot -Tpng reporteActivosRentadosUsuario.dot -o reporteActivosRentadosUsuario.png");
+}
+void arbol::reporteActivosRentadosDeUsuario(nodoABB*& temporal, ofstream& archivo)
+{
+    if(temporal != 0)
+    {
+        if(temporal->izquierda != 0 && temporal->enRenta == true && temporal->izquierda->enRenta == true)
+        {
+            archivo <<   "\""+temporal->codigo + " " + temporal->nombre+ " " + temporal->descripcion + "\"";
+            archivo <<   " -> \"" +temporal->izquierda->codigo + " " + temporal->izquierda->nombre+ " " + temporal->izquierda->descripcion + "\"";
+            archivo << endl;
+        }
+        if(temporal->derecha != 0 && temporal->enRenta == true && temporal->derecha->enRenta == true)
+        {
+            archivo <<   "\""+temporal->codigo + " " + temporal->nombre+ " " + temporal->descripcion + "\"";
+            archivo <<   " -> \"" +temporal->derecha->codigo + " " + temporal->derecha->nombre+ " " + temporal->derecha->descripcion + "\"";
+            archivo << endl;
+        }
+        if(temporal->izquierda != 0 && temporal->derecha != 0 && temporal->enRenta == true)
+        {
+            archivo <<   "\""+temporal->codigo + " " + temporal->nombre+ " " + temporal->descripcion + "\"";
+            archivo << endl;
+        }
+
+        reporteActivosRentadosDeUsuario(temporal->izquierda,archivo);
+        reporteActivosRentadosDeUsuario(temporal->derecha,archivo);
+
+    }
+}
+void arbol::reporteActivosDeUsuario(nodoABB*& temporal, ofstream& archivo)
+{
+    if(temporal != 0)
+    {
+        if(temporal->izquierda != 0)
+        {
+            archivo <<   "\""+temporal->codigo + " " + temporal->nombre+ " " + temporal->descripcion + "\"";
+            archivo <<   " -> \"" +temporal->izquierda->codigo + " " + temporal->izquierda->nombre+ " " + temporal->izquierda->descripcion + "\"";
+            archivo << endl;
+        }
+        if(temporal->derecha != 0)
+        {
+            archivo <<   "\""+temporal->codigo + " " + temporal->nombre+ " " + temporal->descripcion + "\"";
+            archivo <<   " -> \"" +temporal->derecha->codigo + " " + temporal->derecha->nombre+ " " + temporal->derecha->descripcion + "\"";
+            archivo << endl;
+        }
+        if(temporal->izquierda != 0 && temporal->derecha != 0)
+        {
+            archivo <<   "\""+temporal->codigo + " " + temporal->nombre+ " " + temporal->descripcion + "\"";
+            archivo << endl;
+        }
+
+        reporteActivosDeUsuario(temporal->izquierda,archivo);
+        reporteActivosDeUsuario(temporal->derecha,archivo);
+
     }
 }

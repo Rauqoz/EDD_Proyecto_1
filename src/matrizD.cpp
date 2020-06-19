@@ -1,6 +1,8 @@
 #include "matrizD.h"
 #include "nodoM.h"
+#include "nodoABB.h"
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 matrizD::matrizD()
@@ -305,5 +307,32 @@ void matrizD::mostrarUsuariosEmpresa(string empre_)
         }
         cout << endl;
     }
+
+}
+nodoM* matrizD::buscarUsuarioReportes(string user_)
+{
+    nodoM* depa = raiz->derecha;
+    if(depa != 0)
+    {
+        while(depa->abajo !=0)
+        {
+            depa = depa->abajo;
+            while(depa->zmas != 0)
+            {
+                depa = depa->zmas;
+                if(depa->user == user_)
+                {
+                    cout << "\n Usuario Reportes " << depa->user << endl;
+                    return depa;
+                }
+            }
+            if(depa->user == user_)
+            {
+                cout << "\n Usuario Reportes " << depa->user << endl;
+                return depa;
+            }
+        }
+    }
+    return 0;
 
 }

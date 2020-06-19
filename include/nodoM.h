@@ -2,6 +2,7 @@
 #define NODOM_H
 #include <iostream>
 #include "arbol.h"
+#include <fstream>
 using namespace std;
 
 class nodoM
@@ -22,6 +23,8 @@ public:
     arbol arbolAVL;
     nodoM();
     void aumentarContador();
+    void startReporteActivosDepartamento(nodoM* temporal);
+    void reporteActivosDepartamento(nodoM* temporal, ofstream& archivo);
 
 };
 #endif // NODOM_H

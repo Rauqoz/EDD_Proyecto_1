@@ -2,6 +2,7 @@
 #include "nodoC.h"
 #include <iostream>
 #include <ctime>
+#include <fstream>
 using namespace std;
 listaC::listaC()
 {
@@ -77,4 +78,38 @@ void listaC::devolver(int idActivo_,string user_)
         temporal = temporal->siguiente;
     }
     while(temporal->siguiente != 0 && temporal->siguiente != inicio);
+}
+void listaC::startReporteTransacciones()
+{
+    ofstream archivo;
+    string label = "Reporte de Transacciones";
+    archivo.open("reporteTransacciones.dot");
+    string inicioDot = "digraph G {";
+    string finalDot = "}";
+    archivo << inicioDot;
+    archivo << "label = \"" + label  + "\""<< endl;
+    archivo << "node[shape = rectangle];";
+
+    reporteTransacciones(inicio,archivo);
+
+    archivo << finalDot << endl;
+    archivo.close();
+    system("C:\\Graphviz2.38\\bin\\dot -Tpng reporteTransacciones.dot -o reporteTransacciones.png");
+
+}
+void listaC::reporteTransacciones(nodoC* temporal,ofstream& archivo)
+{
+    if(temporal != 0)
+    {
+        archivo <<   "\""+temporal->idTransaccion + " " + temporal->user + " " + temporal->departamento + " " + temporal->empresa + " " + temporal->fecha + "\"";
+        if(temporal->siguiente != 0)
+        {
+            archivo <<   " -> \"" + temporal->siguiente->idTransaccion + " " + temporal->siguiente->user + " " + temporal->siguiente->departamento + " " + temporal->siguiente->empresa + " " + temporal->siguiente->fecha + "\"";
+        }
+        archivo << endl;
+        if(temporal->siguiente != inicio)
+        {
+            reporteTransacciones(temporal->siguiente,archivo);
+        }
+    }
 }

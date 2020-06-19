@@ -6,8 +6,10 @@ using namespace std;
 
 menu::menu()
 {
-    matriz.crearUsuario("Rau", "rau","0","guatemala","claro");
     usuarioActual = 0;
+    usuarioReportes = 0;
+    depaReportes = 0;
+    empreReportes = 0;
 }
 void menu::login()
 {
@@ -243,11 +245,54 @@ void menu::menuAdministrador()
         case '9':
             seguir = false;
             break;
+        case '3':
+            cout << "Ingresa Departamento"<< endl;
+            cin >> departamento;
+            depaReportes = matriz.buscarDepartamento(departamento);
+            if(depaReportes != 0)
+            {
+                depaReportes->startReporteActivosDepartamento(depaReportes->abajo);
+            }
+            else
+            {
+                cout << "**No Existe el Departamento" << endl;
+            }
+
+            break;
         case '1':
             crearUsuarios();
             break;
-        case '5':
+        case '55':
             transacciones.mostrar(transacciones.inicio);
+            break;
+        case '5':
+            transacciones.startReporteTransacciones();
+            break;
+        case '6':
+            cout << "Ingresa Usuario"<< endl;
+            cin >> user ;
+            usuarioReportes = matriz.buscarUsuarioReportes(user);
+            if(usuarioReportes != 0)
+            {
+                usuarioReportes->arbolAVL.startReporteActivosDeUsuario();
+            }
+            else
+            {
+                cout << "**No Existe el Usuario" << endl;;
+            }
+            break;
+        case '7':
+            cout << "Ingresa Usuario"<< endl;
+            cin >> user ;
+            usuarioReportes = matriz.buscarUsuarioReportes(user);
+            if(usuarioReportes != 0)
+            {
+                usuarioReportes->arbolAVL.startReporteActivosRentadosDeUsuario();
+            }
+            else
+            {
+                cout << "**No Existe el Usuario" << endl;;
+            }
             break;
 
         default:

@@ -29,6 +29,9 @@ private:
     matrizD matriz;
     listaC transacciones;
     nodoM* usuarioActual;
+    nodoM* usuarioReportes;
+    nodoM* depaReportes;
+    nodoM* empreReportes;
     string nombre,user, pass,departamento,empresa;
     char opcion;
     string nombreActivo,descripcionActivo;
